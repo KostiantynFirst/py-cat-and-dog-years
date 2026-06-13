@@ -35,7 +35,15 @@ from app.main import get_human_age
     pytest.param(
         100, 100, [21, 17],
         id="large ages"
-    )
+    ),
+    pytest.param(
+        -1, -1, [0, 0],
+        id="negative ages should return zeros"
+    ),
+    pytest.param(
+        32, 32, [4, 3],
+        id="cat 32 and dog 34 should return four "),
+
 ])
 def test_ages(cat_age: int, dog_age: int, expected: list) -> None:
     assert get_human_age(cat_age, dog_age) == expected
