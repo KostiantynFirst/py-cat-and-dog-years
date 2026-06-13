@@ -1,33 +1,32 @@
+import pytest
+
 from app.main import get_human_age
 
-
-def test_zero_ages_returns_zeros() -> None:
-    assert get_human_age(0, 0) == [0, 0]
-
-
-def test_ages_below_15_returns_zeros() -> None:
-    assert get_human_age(14, 14) == [0, 0]
-
-
-def test_15_years_returns_one() -> None:
-    assert get_human_age(15, 15) == [1, 1]
-
-
-def test_16_to_23_years_returns_one() -> None:
-    assert get_human_age(23, 23) == [1, 1]
-
-
-def test_24_years_returns_two() -> None:
-    assert get_human_age(24, 24) == [2, 2]
-
-
-def test_25_to_27_years_returns_two() -> None:
-    assert get_human_age(27, 27) == [2, 2]
-
-
-def test_cat_28_years_returns_three_dog_returns_two() -> None:
-    assert get_human_age(28, 28) == [3, 2]
-
-
-def test_large_ages() -> None:
-    assert get_human_age(100, 100) == [21, 17]
+@pytest.mark.parametrize("cat_age, dog_age, expected", [
+    pytest.param(
+        0, 0, [0, 0], id="zero ages should return zeros"
+    ),
+    pytest.param(
+        14, 14, [0, 0], id="ages below 15 should return zeros"
+    ),
+    pytest.param(
+        15, 15, [1, 1], id="15 years should return one"
+    ),
+    pytest.param(
+        23, 23, [1, 1], id="16 to 23 years should return one"
+    ),
+    pytest.param(
+        24, 24, [2, 2], id="24 years should return two"
+    ),
+    pytest.param(
+        27, 27, [2, 2], id="25 to 27 years should return two"
+    ),
+    pytest.param(
+        28, 28, [3, 2], id="cat 28 years should return three, dog should return two"
+    ),
+    pytest.param(
+        100, 100, [21, 17], id="large ages"
+    )
+])
+def test_ages(cat_age, dog_age, expected) -> None:
+    assert get_human_age(cat_age, dog_age) == expected
