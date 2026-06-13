@@ -1,23 +1,26 @@
 def get_human_age(cat_age: int, dog_age: int) -> list:
-    """
-    Convert cat and dog ages to human years.
-    
-    Rules:
-    Cat: first 15 years = 1 human year, next 9 = +1, then every 4 = +1
-    Dog: first 15 years = 1 human year, next 9 = +1, then every 5 = +1
-    
-    Args:
-        cat_age: Cat's age in cat years
-        dog_age: Dog's age in dog years
-        
-    Returns:
-        List with [cat_human_age, dog_human_age]
-        
-    Examples:
-        get_human_age(0, 0) == [0, 0]
-        get_human_age(15, 15) == [1, 1]
-        get_human_age(24, 24) == [2, 2]
-    """
-    # TODO: Implement this function
-    # Write your tests first, then implement the logic
-    return [0, 0]
+
+    list_of_years = [0, 0]
+    if cat_age < 15:
+        list_of_years[0] = 0
+    elif 15 <= cat_age < 24:
+        list_of_years[0] = 1
+    elif 24 <= cat_age < 28:
+        list_of_years[0] = 2
+    elif 28 <= cat_age < 32:
+        list_of_years[0] = 3
+    elif cat_age > 32:
+        list_of_years[0] = (cat_age - 32) // 4 + 4
+
+    if dog_age < 15:
+        list_of_years[1] = 0
+    elif 15 <= dog_age < 24:
+        list_of_years[1] = 1
+    elif 24 <= dog_age < 30:
+        list_of_years[1] = 2
+    elif 30 <= dog_age < 34:
+        list_of_years[1] = 3
+    elif dog_age > 34:
+        list_of_years[1] = (dog_age - 34) // 5 + 4
+
+    return list_of_years
